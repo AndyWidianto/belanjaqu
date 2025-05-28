@@ -1,0 +1,16 @@
+@import "Tailwindcss";
+
+.cek {
+  justify-content: space-between;
+}
+.animate-start {
+  animation: carouselStart 1s ease-in;
+}
+@keyframes carouselStart {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
