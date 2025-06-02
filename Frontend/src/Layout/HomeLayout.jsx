@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import HomeNavbar from "../View/Navbar/HomeNavbar";
+import NavbarMobile from "../View/Navbar/NavbarMobile";
 
 export default function HomeLayout() {
 
@@ -8,8 +9,9 @@ export default function HomeLayout() {
         <header>
             <HomeNavbar />
         </header>
-        <main>
+        <main className="pt-20">
             <Outlet />
+            <NavbarMobile />
         </main>
         </>
     )

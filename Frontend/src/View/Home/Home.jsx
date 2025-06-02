@@ -15,7 +15,7 @@ export default function Home() {
     });
     return (
         <>
-            <section className="text-lg pt-22 z-99">
+            <section className="text-lg z-99">
                 <div >
                     <div className="flex overflow-hidden z-10">
                         <img src="/Images/carousel-1.jpg" className="aspect-4/1 object-cover animate-start" style={carousel === 1 ? { display: "block" } : { display: "none" }} alt="" />
@@ -53,7 +53,7 @@ export default function Home() {
                     <div className="p-3">
                         <h2 className="font-semibold">For you</h2>
                         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 justify-between p-2">
-                            <Link to="/produk" className="block shadow-xl/20 rounded-sm">
+                            <Link to="/product" className="block shadow-xl/20 rounded-sm">
                                 <div className="">
                                     <img src="/Images/produk-1.jpg" className="w-[500px] object-cover rounded-sm" alt="" />
                                 </div>

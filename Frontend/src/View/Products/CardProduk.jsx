@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { FaStar } from "react-icons/fa";
+import { Link, Outlet } from "react-router";
 
 
 export default function CardProduk() {
@@ -17,23 +18,25 @@ export default function CardProduk() {
                             <img src="Images/produk-3.jpg" alt="" className="block w-[650px] object-cover rounded-sm" style={carousel === 3 ? {display: "block"} : { display: "none" }} />
                         </div>
                         <div className="flex md:justify-center justify-around items-center gap-3 p-3">
-                            <img src="Images/produk-1.jpg" alt="" className="w-[100px] object-cover rounded-sm" onClick={() => setCarousel(1) } />
-                            <img src="Images/produk-2.jpeg" alt="" className="w-[100px] object-cover rounded-sm" onClick={() => setCarousel(2) } />
-                            <img src="Images/produk-3.jpg" alt="" className="w-[100px] object-cover rounded-sm" onClick={() => setCarousel(3) } />
+                            <img src="Images/produk-1.jpg" alt="" className="w-[100px] object-content rounded-sm" onClick={() => setCarousel(1) } />
+                            <img src="Images/produk-2.jpeg" alt="" className="w-[100px] object-content rounded-sm" onClick={() => setCarousel(2) } />
+                            <img src="Images/produk-3.jpg" alt="" className="w-[100px] object-content rounded-sm" onClick={() => setCarousel(3) } />
                         </div>
                     </div>
                     <div className="md:p-6">
                         <div className="py-5">
                             <h2 className="text-xl font-bold">Lorem ipsum dolor sit amet.</h2>
                             <p className="text-sm ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim, laborum aliquam!</p>
-                            <div>
-                                <span>O O O O O</span>
+                            <div className="flex items-center gap-2 p-2">
+                                <div className="flex gap-2 items-center text-xl">
+                                    <FaStar className="text-yellow-400" />
+                                    <FaStar className="text-yellow-400" />
+                                    <FaStar className="text-yellow-400" />
+                                    <FaStar className="text-yellow-400" />
+                                    <FaStar />
+                                </div>
                                 <span>4.5</span>
                             </div>
-                        </div>
-                        <div className="py-5">
-                            <h2 className="text-lg font-semibold">Lorem ipsum dolor sit amet.</h2>
-                            <p className="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, maiores!</p>
                         </div>
                         <div className="py-5">
                             <h2 className="font-semibold text-normal">Lorem ipsum dolor sit.</h2>
@@ -57,74 +60,11 @@ export default function CardProduk() {
                         </div>
                     </div>
                 </div>
-                <div className="lg:flex p-3 lg:gap-3">
-                    <div className="lg:w-[50%] my-4">
-                        <h2 className="text-xl font-bold py-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati, molestias!</h2>
-                        <p className="text-left">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae similique debitis facilis molestiae quidem dolores cumque doloribus! Officiis, quidem? Exercitationem, consequatur porro. Ipsum nulla neque excepturi eveniet omnis natus fugit!
-                            Suscipit repellat maxime totam commodi obcaecati magni placeat atque repellendus? Id aliquid nobis in, iste voluptate perferendis sequi ipsa, veritatis, temporibus repudiandae suscipit ipsum quam rerum odio alias ducimus optio.</p>
-                    </div>
-                    <hr className="md:hidden" />
-                    <div className="block lg:w-[50%]">
-                        <div className="flex justify-between">
-                            <h2 className="text-lg font-bold">Review</h2>
-                            <Link className="p-1 px-4 rounded-full hover:text-blue-800">Lihat selengkapnya</Link>
-                        </div>
-                        <div className="block bg-white shadow-md rounded-sm p-2 my-2">
-                            <div className="flex gap-2 p-1 py-2">
-                                <img src="Images/produk-1.jpg" className="w-[50px] h-[50px] rounded-full p-1" alt="profile" />
-                                <div>
-                                    <h2 className="text-base font-semibold">username</h2>
-                                    <p className="text-sm">produk</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <span>O O O O O</span>
-                                </div>
-                                <p>
-                                    produk apa ini produk gak jelas dijualin alah kontol kalau mau jualan yang jujur lah anjing
-                                    dasar tidak amanah udah kosongin aja tuh toko
-                                </p>
-                            </div>
-                        </div>
-                        <div className="block bg-white shadow-md rounded-sm p-2 my-2">
-                            <div className="flex gap-2 p-1 py-2">
-                                <img src="Images/produk-1.jpg" className="w-[50px] h-[50px] rounded-full p-1" alt="profile" />
-                                <div>
-                                    <h2 className="text-base font-semibold">username</h2>
-                                    <p className="text-sm">produk</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <span>O O O O O</span>
-                                </div>
-                                <p>
-                                    produk apa ini produk gak jelas dijualin alah kontol kalau mau jualan yang jujur lah anjing
-                                    dasar tidak amanah udah kosongin aja tuh toko
-                                </p>
-                            </div>
-                        </div>
-                        <div className="block bg-white shadow-md rounded-sm p-2 my-2">
-                            <div className="flex gap-2 p-1 py-2">
-                                <img src="Images/produk-1.jpg" className="w-[50px] h-[50px] rounded-full p-1" alt="profile" />
-                                <div>
-                                    <h2 className="text-base font-semibold">username</h2>
-                                    <p className="text-sm">produk</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <span>O O O O O</span>
-                                </div>
-                                <p>
-                                    produk apa ini produk gak jelas dijualin alah kontol kalau mau jualan yang jujur lah anjing
-                                    dasar tidak amanah udah kosongin aja tuh toko
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div className="flex gap-3 items-center px-5 text-lg">
+                    <Link to="/product" className="hover:font-semibold" >Detail</Link>
+                    <Link to="review" className="hover:font-semibold" >Review</Link>
                 </div>
+                <Outlet />
                 <div className="p-3">
                     <h2 className="text-lg font-bold py-3">Kategori Popular</h2>
                     <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4">
