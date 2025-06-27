@@ -1,165 +1,160 @@
+import { Ellipsis, Flag, Share, Star, ThumbsDown, ThumbsUp } from "lucide-react";
 import { FaStar, FaRegThumbsUp, FaRegThumbsDown } from "react-icons/fa";
+import { Link } from "react-router";
 
 export default function ReviewProduct() {
 
     return (
-        <div className="lg:flex px-3 gap-3 lg:justify-between">
-            <div className="mx-20 w-100 p-3 lg:order-2">
-                <div className="flex items-center justify-between border-b-1 border-gray-200 gap-3 py-4 text-xl font-semibold">
-                    <div className="flex items-center gap-3">
-                        <FaStar className="text-yellow-600" />
-                        <FaStar className="text-yellow-600" />
-                        <FaStar className="text-yellow-600" />
-                        <FaStar className="text-yellow-600" />
-                        <FaStar />
+        <div className="flex flex-col gap-2 bg-gray-200">
+            <div className="p-2 rounded-md bg-white shadow-md m-2">
+                <div className="flex items-center gap-2 px-2">
+                    <img src="/Images/profile1.png" alt="" className="w-12 h-12 object-cover rounded-full" />
+                    <div className="w-full">
+                        <h2 className="font-semibold">Sarah Jhonshon</h2>
+                        <div>
+                            <span className="text-sm text-gray-600">12 pembelian</span>
+                        </div>
                     </div>
-                    <div>
-                        4.8
+                    <div className="flex items-center gap-2">
+                        <button className="p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500"><Share className="w-5 h-5" /></button>
+                        <button className="p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500"><Flag className="w-5 h-5" /></button>
+                        <button className="p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500"><Ellipsis className="w-5 h-5" /></button>
                     </div>
                 </div>
-                <div className="flex items-center gap-2 py-1">
-                    <span>5</span>
-                    <div className="w-full h-3 rounded-sm bg-gray-400 overflow-hidden">
-                        <div className="w-[80%] h-3 rounded-sm bg-green-600"></div>
+                <div className="flex items-center gap-2 p-2">
+                    <div className="flex items-center">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-gray-400" />
                     </div>
-                    <span>45</span>
+                    <div className="text-gray-400 text-sm">
+                        20 Juli 2024
+                    </div>
                 </div>
-                <div className="flex items-center gap-2 py-1">
-                    <span>4</span>
-                    <div className="w-full h-3 rounded-sm bg-gray-400 overflow-hidden">
-                        <div className="w-[50%] h-3 rounded-sm bg-green-600"></div>
+                <div className="p-2">
+                    <h2 className="text-xl text-center font-semibold">Bagus tapi agak kecil</h2>
+                    <div className="flex items-center gap-3 text-sm text-gray-500 py-2">
+                        <p>Ukuran: <span className="font-semibold text-black">L</span></p>
+                        <p>Warna: <span className="font-semibold text-black">Black</span></p>
                     </div>
-                    <span>45</span>
+                    <p className="text-gray-500 text-base py-2">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea eligendi molestias doloremque eum dolores. Repellendus deleniti provident dicta laudantium porro, numquam libero ullam quas, at earum dolore nemo sed nesciunt.
+                    </p>
                 </div>
-                <div className="flex items-center gap-2 py-1">
-                    <span>3</span>
-                    <div className="w-full h-3 rounded-sm bg-gray-400 overflow-hidden">
-                        <div className="w-[40%] h-3 rounded-sm bg-green-600"></div>
-                    </div>
-                    <span>45</span>
-                </div>
-                <div className="flex items-center gap-2 py-1">
-                    <span>2</span>
-                    <div className="w-full h-3 rounded-sm bg-gray-400 overflow-hidden">
-                        <div className="w-[60%] h-3 rounded-sm bg-green-600"></div>
-                    </div>
-                    <span>45</span>
-                </div>
-                <div className="flex items-center gap-2 py-1">
-                    <span>1</span>
-                    <div className="w-full h-3 rounded-sm bg-gray-400 overflow-hidden">
-                        <div className="w-[10%] h-3 rounded-sm bg-green-600"></div>
-                    </div>
-                    <span>45</span>
+                <div className="flex items-center gap-4 p-4 border-t-1 border-gray-200">
+                    <button className="flex items-center gap-1 text-sm text-gray-700 border-1 border-gray-100 hover:border-blue-500 p-2 px-3 bg-gray-100 rounded-md">
+                        <ThumbsUp className="w-4 h-4" />
+                        <span>Membantu (15)</span>
+                    </button>
+                    <button className="flex items-center gap-1 text-sm text-gray-700 border-1 border-gray-100 hover:border-blue-500 p-2 px-3 bg-gray-100 rounded-md">
+                        <ThumbsDown className="w-4 h-4" />
+                        <span>Tidak Membantu</span>
+                    </button>
+                    <button className="text-blue-600 p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500 ml-auto">Balas</button>
                 </div>
             </div>
-            <div className="block lg:order-1">
-                <select name="ranting" id="ranting">
-                    <option value="1">bitang 5</option>
-                    <option value="1">bitang 4</option>
-                    <option value="1">bitang 3</option>
-                    <option value="1">bitang 2</option>
-                    <option value="1">bitang 1</option>
-                </select>
-                <div className="block bg-white border-b-1 border-gray-400 p-2 my-2">
-                    <div className="flex gap-2 p-1 py-2">
-                        <img src="Images/produk-1.jpg" className="w-[50px] h-[50px] rounded-full p-1" alt="profile" />
+            <div className="p-2 rounded-md bg-white shadow-md m-2">
+                <div className="flex items-center gap-2 px-2">
+                    <img src="/Images/profile1.png" alt="" className="w-12 h-12 object-cover rounded-full" />
+                    <div className="w-full">
+                        <h2 className="font-semibold">Sarah Jhonshon</h2>
                         <div>
-                            <h2 className="text-base font-semibold">username</h2>
-                            <p className="text-sm">produk</p>
+                            <span className="text-sm text-gray-600">12 pembelian</span>
                         </div>
                     </div>
-                    <div>
-                        <div>
-                            <span>O O O O O</span>
-                        </div>
-                        <p>
-                            produk apa ini produk gak jelas dijualin alah kontol kalau mau jualan yang jujur lah anjing
-                            dasar tidak amanah udah kosongin aja tuh toko
-                        </p>
-                        <div className="p-2 flex gap-4 items-center">
-                            <div>
-                                <button><FaRegThumbsUp /></button>
-                                <span>10+jt</span>
-                            </div>
-                            <button><FaRegThumbsDown /></button>
-                        </div>
+                    <div className="flex items-center gap-2">
+                        <button className="p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500"><Share className="w-5 h-5" /></button>
+                        <button className="p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500"><Flag className="w-5 h-5" /></button>
+                        <button className="p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500"><Ellipsis className="w-5 h-5" /></button>
                     </div>
                 </div>
-                <div className="block bg-white border-b-1 border-gray-400 p-2 my-2">
-                    <div className="flex gap-2 p-1 py-2">
-                        <img src="Images/produk-1.jpg" className="w-[50px] h-[50px] rounded-full p-1" alt="profile" />
-                        <div>
-                            <h2 className="text-base font-semibold">username</h2>
-                            <p className="text-sm">produk</p>
-                        </div>
+                <div className="flex items-center gap-2 p-2">
+                    <div className="flex items-center">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-gray-400" />
                     </div>
-                    <div>
-                        <div>
-                            <span>O O O O O</span>
-                        </div>
-                        <p>
-                            produk apa ini produk gak jelas dijualin alah kontol kalau mau jualan yang jujur lah anjing
-                            dasar tidak amanah udah kosongin aja tuh toko
-                        </p>
-                        <div className="p-2 flex gap-4 items-center">
-                            <div>
-                                <button><FaRegThumbsUp /></button>
-                                <span>10+jt</span>
-                            </div>
-                            <button><FaRegThumbsDown /></button>
-                        </div>
-                    </div>
-                </div>                <div className="block bg-white border-b-1 border-gray-400 p-2 my-2">
-                    <div className="flex gap-2 p-1 py-2">
-                        <img src="Images/produk-1.jpg" className="w-[50px] h-[50px] rounded-full p-1" alt="profile" />
-                        <div>
-                            <h2 className="text-base font-semibold">username</h2>
-                            <p className="text-sm">produk</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <span>O O O O O</span>
-                        </div>
-                        <p>
-                            produk apa ini produk gak jelas dijualin alah kontol kalau mau jualan yang jujur lah anjing
-                            dasar tidak amanah udah kosongin aja tuh toko
-                        </p>
-                        <div className="p-2 flex gap-4 items-center">
-                            <div>
-                                <button><FaRegThumbsUp /></button>
-                                <span>10+jt</span>
-                            </div>
-                            <button><FaRegThumbsDown /></button>
-                        </div>
+                    <div className="text-gray-400 text-sm">
+                        20 Juli 2024
                     </div>
                 </div>
-                <div className="block bg-white border-b-1 border-gray-400 p-2 my-2">
-                    <div className="flex gap-2 p-1 py-2">
-                        <img src="Images/produk-1.jpg" className="w-[50px] h-[50px] rounded-full p-1" alt="profile" />
+                <div className="p-2">
+                    <h2 className="text-xl text-center font-semibold">Bagus tapi agak kecil</h2>
+                    <div className="flex items-center gap-3 text-sm text-gray-500 py-2">
+                        <p>Ukuran: <span className="font-semibold text-black">L</span></p>
+                        <p>Warna: <span className="font-semibold text-black">Black</span></p>
+                    </div>
+                    <p className="text-gray-500 text-base py-2">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea eligendi molestias doloremque eum dolores. Repellendus deleniti provident dicta laudantium porro, numquam libero ullam quas, at earum dolore nemo sed nesciunt.
+                    </p>
+                </div>
+                <div className="flex items-center gap-4 p-4 border-t-1 border-gray-200">
+                    <button className="flex items-center gap-1 text-sm text-gray-700 border-1 border-gray-100 hover:border-blue-500 p-2 px-3 bg-gray-100 rounded-md">
+                        <ThumbsUp className="w-4 h-4" />
+                        <span>Membantu (15)</span>
+                    </button>
+                    <button className="flex items-center gap-1 text-sm text-gray-700 border-1 border-gray-100 hover:border-blue-500 p-2 px-3 bg-gray-100 rounded-md">
+                        <ThumbsDown className="w-4 h-4" />
+                        <span>Tidak Membantu</span>
+                    </button>
+                    <button className="text-blue-600 p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500 ml-auto">Balas</button>
+                </div>
+            </div>
+            <div className="p-2 rounded-md bg-white shadow-md m-2">
+                <div className="flex items-center gap-2 px-2">
+                    <img src="/Images/profile1.png" alt="" className="w-12 h-12 object-cover rounded-full" />
+                    <div className="w-full">
+                        <h2 className="font-semibold">Sarah Jhonshon</h2>
                         <div>
-                            <h2 className="text-base font-semibold">username</h2>
-                            <p className="text-sm">produk</p>
+                            <span className="text-sm text-gray-600">12 pembelian</span>
                         </div>
                     </div>
-                    <div>
-                        <div>
-                            <span>O O O O O</span>
-                        </div>
-                        <p>
-                            produk apa ini produk gak jelas dijualin alah kontol kalau mau jualan yang jujur lah anjing
-                            dasar tidak amanah udah kosongin aja tuh toko
-                        </p>
-                        <div className="p-2 flex gap-4 items-center">
-                            <div>
-                                <button><FaRegThumbsUp /></button>
-                                <span>10+jt</span>
-                            </div>
-                            <button><FaRegThumbsDown /></button>
-                        </div>
+                    <div className="flex items-center gap-2">
+                        <button className="p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500"><Share className="w-5 h-5" /></button>
+                        <button className="p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500"><Flag className="w-5 h-5" /></button>
+                        <button className="p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500"><Ellipsis className="w-5 h-5" /></button>
                     </div>
                 </div>
+                <div className="flex items-center gap-2 p-2">
+                    <div className="flex items-center">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <Star className="w-4 h-4 text-gray-400" />
+                    </div>
+                    <div className="text-gray-400 text-sm">
+                        20 Juli 2024
+                    </div>
+                </div>
+                <div className="p-2">
+                    <h2 className="text-xl text-center font-semibold">Bagus tapi agak kecil</h2>
+                    <div className="flex items-center gap-3 text-sm text-gray-500 py-2">
+                        <p>Ukuran: <span className="font-semibold text-black">L</span></p>
+                        <p>Warna: <span className="font-semibold text-black">Black</span></p>
+                    </div>
+                    <p className="text-gray-500 text-base py-2">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea eligendi molestias doloremque eum dolores. Repellendus deleniti provident dicta laudantium porro, numquam libero ullam quas, at earum dolore nemo sed nesciunt.
+                    </p>
+                </div>
+                <div className="flex items-center gap-4 p-4 border-t-1 border-gray-200">
+                    <button className="flex items-center gap-1 text-sm text-gray-700 border-1 border-gray-100 hover:border-blue-500 p-2 px-3 bg-gray-100 rounded-md">
+                        <ThumbsUp className="w-4 h-4" />
+                        <span>Membantu (15)</span>
+                    </button>
+                    <button className="flex items-center gap-1 text-sm text-gray-700 border-1 border-gray-100 hover:border-blue-500 p-2 px-3 bg-gray-100 rounded-md">
+                        <ThumbsDown className="w-4 h-4" />
+                        <span>Tidak Membantu</span>
+                    </button>
+                    <button className="text-blue-600 p-2 px-3 bg-gray-100 rounded-md border-1 border-gray-100 hover:border-blue-500 ml-auto">Balas</button>
+                </div>
+            </div>
+            <div className="w-full p-5 text-center">
+                <Link to="/detail-review/product/id" className="m-2 p-3 px-4 bg-gray-100 rounded-md shadow-md border-1 border-gray-100 hover:text-blue-600 hover:border-blue-600">Muat Lebih Banyak</Link>
             </div>
         </div>
     )

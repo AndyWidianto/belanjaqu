@@ -2,7 +2,7 @@ import './index.css';
 
 //define page
 import { Route, Routes } from 'react-router';
-import HomeLayout from './Layout/HomeLayout';
+import HomeLayout from './View/Layout/HomeLayout';
 import HomeCategories from './View/Home/Categories';
 import HomeDelivery from './View/Home/Delivery';
 import Home from './View/Home/Home';
@@ -16,28 +16,49 @@ import DetailProduct from './View/Products/Detail';
 import ReviewProduct from './View/Products/Review';
 import Carts from './View/Carts';
 import Login from './View/Auth/Login';
+import Register from './View/Auth/Register';
+import Payment from './View/Payment/Payment';
+import AddProduct from './View/Products/AddProduct';
+import EditProfile from './View/Profile/Edit';
+import SearchProduct from './View/Products/SearchProduk';
+import LocationPayment from './View/Payment/LocationPayment';
+import MethodPayment from './View/Payment/MethodPayment';
+import FormChatting from './View/Chatting/FormChatting';
+import Percobaan from './View/FilePercobaan';
+import DetailReview from './View/Products/DetailReviewProduct';
 
 function App() {
 
   return (
     <>
       <Routes>
+        <Route path="/percobaan" element={<Percobaan />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment/new-location" element={<LocationPayment />} />
+        <Route path="/payment/method" element={<MethodPayment />} />
         <Route path="/" element={<HomeLayout />} >
           <Route index element={<Home />} />
           <Route path="categories" element={<HomeCategories />} />
           <Route path="delivery" element={<HomeDelivery />} />
+          <Route path="search/:product" element={<SearchProduct />} />
           <Route path='product' element={<CardProduk />} >
-            <Route index element={<DetailProduct />} />
+            <Route path='/product' element={<DetailProduct />} />
             <Route path='review' element={<ReviewProduct />} />
+          </Route>
+          <Route path='/profile' element={<Profile />} >
+            <Route index element={<Media />} />
+            <Route path='produk' element={<Toko />} />
           </Route>
           <Route path='carts' element={<Carts />} />
         </Route>
-        <Route path='/profile' element={<Profile />} >
-          <Route index element={<Media />} />
-          <Route path='/profile/produk' element={<Toko />} />
+        <Route path='/message' element={<Chatting />} >
+          <Route path=':name' element={<FormChatting />} />
         </Route>
-        <Route path='/message' element={<Chatting />} />
+        <Route path='/add-product' element={<AddProduct />} />
+        <Route path='edit' element={<EditProfile />} />
+        <Route path='/detail-review/product/id' element={<DetailReview />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </>

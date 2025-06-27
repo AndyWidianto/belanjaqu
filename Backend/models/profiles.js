@@ -56,10 +56,6 @@ const profiles = connect.define("profiles", {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    foto_sampul: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
     cover_picture: {
         type: DataTypes.STRING,
         allowNull: true
@@ -68,5 +64,7 @@ const profiles = connect.define("profiles", {
     tableName: "profiles",
     timestamps: true
 });
+
+users.hasMany(profiles, { foreignKey: "user_id" });
 
 export default profiles;

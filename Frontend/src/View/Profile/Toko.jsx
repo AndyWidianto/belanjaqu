@@ -4,10 +4,10 @@ export default function Toko() {
     return (
         <>
             <div>
-                <div className="grid grid-cols-4 gap-4 mx-10">
+                <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 mt-5 lg:mt-0 lg:mx-10">
                     <Link to="/produk" className="block shadow-xl/20 rounded-sm">
                         <div className="">
-                            <img src="/Images/produk-1.jpg" className="w-[500px] object-cover rounded-sm" alt="" />
+                            <img src="/Images/produk-1.jpg" className="w-full object-cover rounded-sm" alt="" />
                         </div>
                         <div className="flex p-3 justify-between items-end">
                             <div>
@@ -21,7 +21,7 @@ export default function Toko() {
                     </Link>
                     <Link to="/produk" className="block shadow-xl/20 rounded-sm">
                         <div className="">
-                            <img src="/Images/produk-1.jpg" className="w-[500px] object-cover rounded-sm" alt="" />
+                            <img src="/Images/produk-1.jpg" className="w-full object-cover rounded-sm" alt="" />
                         </div>
                         <div className="flex p-3 justify-between items-end">
                             <div>
@@ -35,7 +35,7 @@ export default function Toko() {
                     </Link>
                     <Link to="/produk" className="block shadow-xl/20 rounded-sm">
                         <div className="">
-                            <img src="/Images/produk-1.jpg" className="w-[500px] object-cover rounded-sm" alt="" />
+                            <img src="/Images/produk-1.jpg" className="w-full object-cover rounded-sm" alt="" />
                         </div>
                         <div className="flex p-3 justify-between items-end">
                             <div>
@@ -49,7 +49,7 @@ export default function Toko() {
                     </Link>
                     <Link to="/produk" className="block shadow-xl/20 rounded-sm">
                         <div className="">
-                            <img src="/Images/produk-1.jpg" className="w-[500px] object-cover rounded-sm" alt="" />
+                            <img src="/Images/produk-1.jpg" className="w-full object-cover rounded-sm" alt="" />
                         </div>
                         <div className="flex p-3 justify-between items-end">
                             <div>
@@ -63,7 +63,7 @@ export default function Toko() {
                     </Link>
                     <Link to="/produk" className="block shadow-xl/20 rounded-sm">
                         <div className="">
-                            <img src="/Images/produk-1.jpg" className="w-[500px] object-cover rounded-sm" alt="" />
+                            <img src="/Images/produk-1.jpg" className="w-full object-cover rounded-sm" alt="" />
                         </div>
                         <div className="flex p-3 justify-between items-end">
                             <div>
@@ -77,7 +77,7 @@ export default function Toko() {
                     </Link>
                     <Link to="/produk" className="block shadow-xl/20 rounded-sm">
                         <div className="">
-                            <img src="/Images/produk-1.jpg" className="w-[500px] object-cover rounded-sm" alt="" />
+                            <img src="/Images/produk-1.jpg" className="w-full object-cover rounded-sm" alt="" />
                         </div>
                         <div className="flex p-3 justify-between items-end">
                             <div>
@@ -91,7 +91,7 @@ export default function Toko() {
                     </Link>
                     <Link to="/produk" className="block shadow-xl/20 rounded-sm">
                         <div className="">
-                            <img src="/Images/produk-1.jpg" className="w-[500px] object-cover rounded-sm" alt="" />
+                            <img src="/Images/produk-1.jpg" className="w-full object-cover rounded-sm" alt="" />
                         </div>
                         <div className="flex p-3 justify-between items-end">
                             <div>

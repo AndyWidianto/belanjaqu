@@ -1,36 +1,239 @@
-import { Link, useLocation, useNavigation, useRoutes } from "react-router";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import { FaCartPlus, FaUser, FaComment, FaSearch } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
+import { FaBell } from "react-icons/fa6";
+import { Bell, Clapperboard, Grid3x3, Home, MessageCircle, MessageCircleMore, Search, ShoppingCartIcon, User } from "lucide-react";
 
 
 export default function HomeNavbar() {
     const location = useLocation();
+    const navigate = useNavigate()
+    const [search, setSearch] = useState(null);
+
+    const [dropdownMenu, setDropdownMenu] = useState(false);
+    const refDropdownMenu = useRef();
+
+    function handleSerach(e) {
+        e.preventDefault();
+        navigate(`/search/${search}`);
+    }
+    function handleClickOutside(e) {
+        if (refDropdownMenu.current && !refDropdownMenu.current.contains(e.target)) {
+            setDropdownMenu(false);
+        }
+    }
+    useEffect(() => {
+        window.addEventListener('mousedown', handleClickOutside);
+        window.addEventListener('scroll', handleClickOutside, true);
+        return () => {
+            window.removeEventListener('mousedown', handleClickOutside);
+            window.removeEventListener('scroll', handleClickOutside, true);
+        };
+    }, [dropdownMenu]);
+
     return (
         <>
-            <div className="fixed w-full bg-white">
-                <nav className="flex gap-4 justify-between items-center py-1 text-md font-normal shadow-lg bg-white">
-                    <Link to="/" className="md:flex items-center md:w-20">
-                        <img src="/public/Images/logo.png" className="w-10 object-cover" alt="logo E-Commerce" />
-                        <h3 className="hidden md:block font-semibold text-lg">BelanjaQu</h3>
-                    </Link>
-                    <ul className="flex gap-4 w-full md:w-[60%] items-center">
-                        <li><Link to="/" className={`p-1 px-4 hidden md:block ${location.pathname === '/' ? 'font-semibold' : ''}`} >Home</Link></li>
-                        <li><Link to="/categories" className={`p-1 px-4 hidden md:block ${location.pathname === '/categories' ? 'font-semibold' : ''}`}>Categoris</Link></li>
-                        <li className="w-full md:pl-3 rounded-full border border-gray-400">
-                            <form className="flex items-center">
-                                <input type="search" name="" id="" className="w-full outline-0" />
-                                <button type="submit" className="p-3 px-4 rounded-r-full text-white bg-blue-400 cursor-pointer"><FaSearch /></button>
+            <div className="fixed w-full bg-white top-0 z-99">
+                <nav className="flex gap-1 sm:gap-4 justify-between items-center py-1 text-md px-2 sm:px-0 font-normal shadow-lg bg-white">
+                    <ul className="flex gap-1 w-full md:w-full items-center">
+                        <li>
+                            <Link to="/" className="md:flex items-center">
+                                <img src="/public/Images/logo.png" className="w-10 object-cover" alt="logo E-Commerce" />
+                                {/* <h3 className="hidden md:block font-semibold text-lg">BelanjaQu</h3> */}
+                            </Link>
+                        </li>
+                        <li className="md:block p-1 px-4 hidden">
+                            <NavLink to="/" className={({ isActive }) => isActive ? 'text-blue-600 font-semibold' : ''} >
+                                <div className="flex items-center gap-1">
+                                    <Home className="w-4 h-4" />
+                                    <span>Home</span>
+                                </div>
+                            </NavLink>
+                        </li>
+                        <li className="p-1 px-4 hidden md:block">
+                            <NavLink to="/categories" className={({ isActive }) => isActive ? "text-blue-600 font-semibold" : ""}>
+                                <div className="flex items-center gap-1">
+                                    <Grid3x3 className="w-4 h-4" />
+                                    <span>Categoris</span>
+                                </div>
+                            </NavLink>
+                        </li>
+                        <li className="w-full">
+                            <form className="flex items-center relative" onSubmit={handleSerach}>
+                                <button type="submit" className="absolute left-2 cursor-pointer text-gray-600"><Search className="w-5 h-5" /></button>
+                                <input type="search" name="search" id="search" className="w-full bg-gray-200 rounded-full p-2 pr-2 pl-8" onChange={(e) => setSearch(e.target.value)} />
                             </form>
                         </li>
                     </ul>
-                    <ul className="flex gap-4 items-center md:mr-20">
+                    <ul className="flex md:gap-2 items-center md:mr-5">
                         <li>
-                            <Link to="message" className="p-2"><FaComment /></Link>
+                            <Link to="message" className="p-2"><MessageCircleMore /></Link>
                         </li>
                         <li className="hidden md:block">
-                            <Link className="flex gap-1 items-center p-2 px-4" to="profile"><FaUser /> <span>account</span></Link>
+                            <Link to="message" className="p-2"><Clapperboard /></Link>
                         </li>
                         <li>
-                            <Link to="carts" className="p-2"><FaCartPlus /></Link>
+                            <div className="relative hidden md:block" ref={refDropdownMenu}>
+                                <button className="p-2 flex items-center" onClick={() => setDropdownMenu(!dropdownMenu)}>
+                                    <Bell />
+                                    <div className="custom-text-sm rounded-full p-1 text-white bg-red-400 absolute right-0">12</div>
+                                </button>
+                                <ul id="dropdownMenu" className={`block absolute right-0 w-100 overflow-hidden overflow-y-scroll scrollbar-hidden bg-white transition-all duration-200 linear ${dropdownMenu ? 'border-1 p-1 shadow-lg rounded-md max-h-100' : 'max-h-0'}`}>
+                                    <li className="border-b-1 border-gray-400 p-3">
+                                        <h2 className="text-lg text-center font-semibold w-full">Notifications</h2>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2 bg-blue-300">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2 bg-blue-300">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2 bg-blue-300">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2 bg-blue-300">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2 bg-blue-300">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
+                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
+                                            <div className="text-start">
+                                                <h2>Andy Widianto</h2>
+                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            </div>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li className="hidden md:block text-blue-600" hidden>
+                            <Link className="flex gap-1 items-center p-2 px-4" to="profile"><User /> <span>account</span></Link>
+                        </li>
+                        <li className="hidden md:block w-10 h-10">
+                            <Link to="/profile" className="rounded-full">
+                                <img src="/Images/profile-default.svg" alt="profile" className="object-cover w-10 h-10" />
+                            </Link>
+                        </li>
+                        <li>
+                            <NavLink to="carts" className={({ isActive }) => isActive ? "text-blue-600" : ""}>
+                                <div className="p-2">
+                                    <ShoppingCartIcon />
+                                </div>
+                            </NavLink>
                         </li>
                     </ul>
                 </nav>

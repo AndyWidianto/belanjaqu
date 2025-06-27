@@ -1,10 +1,27 @@
 @import "Tailwindcss";
 
-.cek {
-  justify-content: space-between;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: 100;
+
 }
 .animate-start {
   animation: carouselStart 1s ease-in;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+.custom-text-sm {
+  font-size: 10px;
+}
+.text-xss {
+  font-size: 12px;
 }
 @keyframes carouselStart {
   from {
@@ -16,12 +33,20 @@
 }
 
 @media screen and (max-width: 500px) {
-  .custom-media-w-300 {
-    width: 300px !important;
+  .custom-media-w-250 {
+    width: 250px !important;
   }
 }
 @media screen and (max-width: 600px) {
     .custom-media-w-400 {
     width: 400px;
+  }
+}
+@media screen and (max-width: 465px) {
+  .media-screen-460-hidden {
+    display: none;
+  }
+  .media-screen-460-show {
+    display: block;
   }
 }
