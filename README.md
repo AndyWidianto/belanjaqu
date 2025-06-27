@@ -61,9 +61,10 @@ cd belanjaqu
 ```
 ### 3. Masuk ke directory Backend/Frontend
 ```bash
-cd Backend || cd frontend
+cd Backend
+cd frontend
 ```
-### 4 Jalankan Proyek for Frontend
+### 4 Jalankan Proyek
 ```bash
 npm run dev
 ```
