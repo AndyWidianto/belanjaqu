@@ -7,7 +7,7 @@
 ## 🚀 Fitur Utama
 
 - 💬 **Chat**  
-  Fitur percakapan antara pembeli dan penjual secara real-time.
+  Fitur percakapan antara pembeli dan penjual secara real-time. **(selesai)**
 
 - 🎞️ **Reels**  
   Video pendek untuk promosi produk terbaru.
