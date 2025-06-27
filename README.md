@@ -6,13 +6,41 @@
 
 ## 🚀 Fitur Utama
 
-- 🔍 Pencarian produk cepat dan responsif
-- 🛍️ Manajemen keranjang belanja
-- 👤 Autentikasi pengguna (Login & Register)
-- 🧾 Checkout dan konfirmasi pesanan
-- 🖼️ Galeri produk dengan kategori
-- 📦 Halaman detail produk
-- 📊 Dashboard admin untuk pengelolaan produk
+- 💬 **Chat**  
+  Fitur percakapan antara pembeli dan penjual secara real-time.
+
+- 🎞️ **Reels**  
+  Video pendek untuk promosi produk terbaru.
+
+- ➕ **Create Product**  
+  Penjual dapat menambahkan produk baru dengan detail lengkap.
+
+- 🖼️ **Galeri Produk**  
+  Tampilkan gambar produk dalam tampilan grid menarik.
+
+- 🗂️ **Kategori**  
+  Produk diatur dalam kategori agar mudah ditemukan.
+
+- 🔍 **Pencarian Produk Cepat & Responsif**  
+  Fitur search untuk mempermudah pembeli menemukan produk.
+
+- 🛍️ **Manajemen Keranjang Belanja**  
+  Tambah, edit, atau hapus produk dari keranjang belanja dengan mudah.
+
+- 👤 **Autentikasi Pengguna (Login & Register)**  
+  Sistem login & register aman untuk pembeli dan penjual.
+
+- 🧾 **Checkout & Konfirmasi Pesanan**  
+  Proses checkout cepat dengan konfirmasi pembayaran.
+
+- 📦 **Halaman Detail Produk**  
+  Lihat detail spesifikasi, gambar, dan ulasan produk.
+
+- 📊 **Dashboard Admin**  
+  Panel admin untuk pengelolaan produk, pesanan, kategori, dan pengguna.
+
+- 🔔 **Notifikasi**  
+  Notifikasi real-time untuk update pesanan, chat baru, dan promo.
 
 ---
 
