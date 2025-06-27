@@ -53,7 +53,7 @@ belanjaqu
 
 ### 1. Clone repository
 ```bash
-git clone https://github.com/username/belanjaqu.git
+git clone https://github.com/AndyWidianto/belanjaqu.git
 ```
 ### 2. Masuk ke directory
 ```bash
