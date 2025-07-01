@@ -2,7 +2,7 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import { FaCartPlus, FaUser, FaComment, FaSearch } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
 import { FaBell } from "react-icons/fa6";
-import { Bell, Clapperboard, Grid3x3, Home, MessageCircle, MessageCircleMore, Search, ShoppingCartIcon, User } from "lucide-react";
+import { Bell, Clapperboard, Grid3x3, Heart, Home, MessageCircle, MessageCircleMore, Search, ShoppingCartIcon, User, UserPlus2 } from "lucide-react";
 
 
 export default function HomeNavbar() {
@@ -60,8 +60,8 @@ export default function HomeNavbar() {
                         </li>
                         <li className="w-full">
                             <form className="flex items-center relative" onSubmit={handleSerach}>
-                                <button type="submit" className="absolute left-2 cursor-pointer text-gray-600"><Search className="w-5 h-5" /></button>
-                                <input type="search" name="search" id="search" className="w-full bg-gray-200 rounded-full p-2 pr-2 pl-8" onChange={(e) => setSearch(e.target.value)} />
+                                <button type="submit" className="absolute left-2 cursor-pointer text-gray-500"><Search className="w-5 h-5" /></button>
+                                <input type="search" name="search" id="search" className="w-full bg-blue-100 rounded-full focus:outline-blue-500 p-2 pr-2 pl-8" onChange={(e) => setSearch(e.target.value)} />
                             </form>
                         </li>
                     </ul>
@@ -78,142 +78,43 @@ export default function HomeNavbar() {
                                     <Bell />
                                     <div className="custom-text-sm rounded-full p-1 text-white bg-red-400 absolute right-0">12</div>
                                 </button>
-                                <ul id="dropdownMenu" className={`block absolute right-0 w-100 overflow-hidden overflow-y-scroll scrollbar-hidden bg-white transition-all duration-200 linear ${dropdownMenu ? 'border-1 p-1 shadow-lg rounded-md max-h-100' : 'max-h-0'}`}>
-                                    <li className="border-b-1 border-gray-400 p-3">
-                                        <h2 className="text-lg text-center font-semibold w-full">Notifications</h2>
-                                    </li>
+                                <ul id="dropdownMenu" className={`block absolute right-0 w-100 overflow-hidden overflow-y-scroll scrollbar-hidden bg-white border-gray-500 transition-all duration-200 linear ${dropdownMenu ? 'border-1 max-h-100' : 'max-h-0'}`}>
                                     <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2 bg-blue-300">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                        <button className="flex items-center gap-2 w-full border-b-1 p-2 text-start border-gray-400 bg-blue-100">
+                                            <div className="relative w-12 h-12 shrink-0">
+                                                <img src="/Images/gambar_saya.jpg" alt="" className="absolute z-5 w-full h-full object-cover rounded-full" />
+                                                <div className="flex items-center absolute bottom-0 right-0 z-10 p-[2px] border-1 border-gray-100 bg-white text-red-600 rounded-full">
+                                                    <Heart className="w-4 h-4" />
+                                                </div>
+                                            </div>
+                                            <div className="p-2">
+                                                <h2 className="font-semibold text-blue-600">Andy Widianto <span className="font-base text-sm text-gray-600">Telah Menyukai postingan anda</span></h2>
                                             </div>
                                         </button>
                                     </li>
                                     <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2 bg-blue-300">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                        <button className="flex items-center gap-2 w-full border-b-1 p-2 text-start border-gray-400 bg-blue-100">
+                                            <div className="relative w-12 h-12 shrink-0">
+                                                <img src="/Images/gambar_saya.jpg" alt="" className="absolute z-5 w-full h-full object-cover rounded-full" />
+                                                <div className="flex items-center absolute bottom-0 right-0 z-10 p-[2px] border-1 border-gray-100 bg-white text-blue-600 rounded-full">
+                                                    <MessageCircle className="w-4 h-4" />
+                                                </div>
+                                            </div>
+                                            <div className="p-2">
+                                                <h2 className="font-semibold text-blue-600">Andy Widianto <span className="font-base text-sm text-gray-600">Memberi ulasan: "Product yang bagus dan sangat halus kainnya"</span></h2>
                                             </div>
                                         </button>
                                     </li>
                                     <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2 bg-blue-300">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                        <button className="flex items-center gap-2 w-full border-b-1 p-2 text-start border-gray-400 bg-blue-100">
+                                            <div className="relative w-12 h-12 shrink-0">
+                                                <img src="/Images/gambar_saya.jpg" alt="" className="absolute z-5 w-full h-full object-cover rounded-full" />
+                                                <div className="flex items-center absolute bottom-0 right-0 z-10 p-[2px] border-1 border-gray-100 bg-white text-green-600 rounded-full">
+                                                    <UserPlus2 className="w-4 h-4" />
+                                                </div>
                                             </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2 bg-blue-300">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
-                                            </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2 bg-blue-300">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
-                                            </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
-                                            </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
-                                            </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
-                                            </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
-                                            </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
-                                            </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
-                                            </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
-                                            </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
-                                            </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
-                                            </div>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button className="flex items-center gap-2 w-full border-b-1 border-gray-400 p-2">
-                                            <img src="/Images/logo.jpg" alt="" className="w-10 h-10 object-cover rounded-full border-1" />
-                                            <div className="text-start">
-                                                <h2>Andy Widianto</h2>
-                                                <p className="text-sm text-gray-600">Telah Menyukai postingan anda</p>
+                                            <div className="p-2">
+                                                <h2 className="font-semibold text-blue-600">Andy Widianto <span className="font-base text-sm text-gray-600">Mengikuti anda</span></h2>
                                             </div>
                                         </button>
                                     </li>

@@ -1,26 +1,29 @@
 import { Link, Outlet } from "react-router";
 import { FaPlus } from 'react-icons/fa6';
-import { FaEdit, FaPen } from "react-icons/fa";
-import EditProfile from "./Edit";
+import { Pen, SquarePen, Truck } from "lucide-react";
+import { useState } from "react";
 
 
 export default function Profile() {
 
     return (
         <>
-            <section>
+            <section className="bg-gray-100">
                 <div>
-                    <div>
-                        <img src="Images/carousel-1.jpg" className="w-full aspect-4/1 object-cover" alt="image" />
-                        <div className="flex justify-end text-md md:text-lg lg:text-xl w-full font-semibold">
-                            <div className="relative bottom-9 lg:bottom-12 bg-gray-100 rounded-full border-1 lg:p-3 p-2 border-gray-200"><FaPen /></div>
-                        </div> 
-                    </div>
-                    <div className="p-3 block lg:flex items-center lg:justify-between relative bottom-20 md:bottom-10">
-                        <div className="lg:flex items-start block lg:gap-3">
-                            <div className="flex items-start">
-                                <img src="Images/produk-1.jpg" alt="profile" className="relative bottom-0 md:bottom-25 lg:bottom-35 w-15 h-15 md:w-30 md:h-30 lg:w-50 lg:h-50 shrink-0 rounded-full object-cover border-3 border-white z-10" />
+                    <div className="relative pb-3">
+                        <img src="Images/E-Commerce.jpg" className="w-full aspect-4/1 object-cover" alt="image" />
+                        <div className="flex justify-end relative text-md md:text-lg lg:text-xl w-full font-semibold">
+                            <div className="absolute bottom-0 right-0 bg-gray-100 rounded-full p-2 text-gray-600"><SquarePen className="w-5 h-5" /></div>
+                        </div>
+                        <div className="flex absolute bottom-0 w-20 h-20 md:w-40 md:h-40 lg:w-50 lg:h-50 mx-3 border-4 border-white rounded-full">
+                            <div className="relative w-full h-full">
+                                <img src="Images/gambar_saya.jpg" alt="profile" className="absolute left-0 bottom-0 z-5 w-full h-full object-cover rounded-full" />
+                                <button className="flex items-center gap-1 absolute bottom-0 right-6 z-10 p-1 px-2 bg-gray-100 text-gray-00 border-1 border-gray-500 text-sm rounded-md"><Pen className="w-4 h-4" /><span>Edit</span></button>
                             </div>
+                        </div>
+                    </div>
+                    <div className="p-3 block lg:flex items-center lg:justify-between">
+                        <div className="lg:flex items-start block lg:gap-3">
                             <div className="">
                                 <h2 className="text-xl lg:my-1 font-bold">Username anda</h2>
                                 <p>Toko: Kelontong</p>
@@ -29,7 +32,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className="lg:px-20">
-                            <div className="flex gap-3 w-full justify-end p-3 lg:p-0">
+                            <div className="flex gap-3 w-full justify-end p-3 py-5 lg:p-0">
                                 <Link to="/add-product" className="flex items-center gap-1 p-1 px-4 lg:text-lg text-md border-1 border-gray-400 text-black rounded-md"><FaPlus /> product</Link>
                                 <button className="flex items-center gap-1 p-1 px-4 lg:text-lg text-md bg-black text-white rounded-md"><FaPlus /> Follow</button>
                             </div>
@@ -46,6 +49,12 @@ export default function Profile() {
                                     <p>Likes</p>
                                     <h2 className="text-xl font-bold">11,000</h2>
                                 </div>
+                            </div>
+                            <div className="flex items-center justify-around text-gray-600">
+                                <button><Truck className="w-6 h-6" /></button>
+                                <button><Truck className="w-6 h-6" /></button>
+                                <button><Truck className="w-6 h-6" /></button>
+                                <button><Truck className="w-6 h-6" /></button>
                             </div>
                         </div>
                     </div>

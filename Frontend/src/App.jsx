@@ -24,7 +24,6 @@ import SearchProduct from './View/Products/SearchProduk';
 import LocationPayment from './View/Payment/LocationPayment';
 import MethodPayment from './View/Payment/MethodPayment';
 import FormChatting from './View/Chatting/FormChatting';
-import Percobaan from './View/FilePercobaan';
 import DetailReview from './View/Products/DetailReviewProduct';
 
 function App() {
@@ -32,7 +31,6 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/percobaan" element={<Percobaan />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/payment" element={<Payment />} />
@@ -57,7 +55,7 @@ function App() {
           <Route path=':name' element={<FormChatting />} />
         </Route>
         <Route path='/add-product' element={<AddProduct />} />
-        <Route path='edit' element={<EditProfile />} />
+        <Route path='/edit-profile' element={<EditProfile />} />
         <Route path='/detail-review/product/id' element={<DetailReview />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>

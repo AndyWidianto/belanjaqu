@@ -16,7 +16,7 @@ export default function Chatting() {
     const [partnerUser, setPartnerUser] = useState(null);
     const [user, setUser] = useState(null);
     const [previewBackground, setPreviewBackground] = useState(false);
-    const [background, setBackground] = useState('/Images/E-Commerce.jpg');
+    const [background, setBackground] = useState(null);
     const [brightness, setBrightness] = useState(null);
 
     const [SearchParams] = useSearchParams();
@@ -57,7 +57,7 @@ export default function Chatting() {
 
     function submit(e) {
         e.preventDefault();
-        presenter.createMessage(partnerUser, user, messages, message, userLastMessages);
+        presenter.createMessage(partnerUser, user, messages, message);
     }
 
     // mengambil data dalam 1 kali
@@ -128,21 +128,23 @@ export default function Chatting() {
                                 <div className={`w-full hover:bg-blue-100 ${name === value.user.username ? 'bg-blue-100' : ''}`} key={index}>
                                     {user && (user.id === value.sender_id) || (user.id === value.receiver_id) ?
                                         <Link to={`/message?name=${value.user.username}`} className="flex items-center w-full p-2 border-1 border-r-0 border-gray-200">
-                                            <div className="mr-2">
-                                                <img src={value?.profile?.profile_picture || '/Images/profile-default.svg'} className="w-10 h-10 rounded-full object-cover m-2" alt="" />
+                                            <div className="w-10 h-10 mr-2">
+                                                {value?.profile?.profile_picture ? 
+                                                <img src={value?.profile?.profile_picture} className="w-full h-full rounded-full object-cover m-2" alt={value.user.username} /> :
+                                                <div className="flex items-center justify-center w-full h-full rounded-full bg-blue-700 text-white font-bold text-lg">
+                                                    {value.user.username.split("")[0].toUpperCase()}
+                                                </div>}
                                             </div>
                                             <div>
                                                 <h2 className="font-semibold text-md">{value.user.username}</h2>
                                                 <p className="md:w-[250px] custom-media-w-250 custom-media-w-400 text-base truncate">{value.content}</p>
                                             </div>
                                             <div className="text-sm ml-auto text-blue-600">
-                                                <span>12</span>
                                             </div>
                                         </Link> :
                                         <></>}
                                 </div>
                             )}
-                            <div className="h-300"></div>
                         </div>
                     </div>
                 </div>

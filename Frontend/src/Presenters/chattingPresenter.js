@@ -48,7 +48,8 @@ export default class ChattingPresenter {
         }
     }
 
-    async createMessage(partner, user, messages, message, userMessage) {
+    async createMessage(partner, user, messages, message) {
+        if (message === '') return;
         if (!partner) return;
         const date = new Date();
         const data = {
@@ -60,11 +61,11 @@ export default class ChattingPresenter {
             updatedAt: date.toISOString()
         }
         this.#view.setMessages([...messages, data]);
-        await this.#view.socket.emit("private_message", {
+        this.#view.socket.emit("private_message", {
             to: partner?.user_id,
             message: data
         });
-        this.getLastMessage();
+        await this.getLastMessage();
         this.#view.setMessage('');
     }
     parseCreatedAt(createdAt) {
@@ -77,7 +78,7 @@ export default class ChattingPresenter {
             time = time / 60;
             timeMessage = `${parseInt(time)}m`;
             if (time > 60) {
-                timeMessage = dateCreate.toLocaleDateString("id-ID", {
+                timeMessage = dateCreate.toLocaleDateString([], {
                     hour: "2-digit",
                     minute: "2-digit",
                     hour12: false
@@ -85,5 +86,37 @@ export default class ChattingPresenter {
             }
         }
         return timeMessage;
+    }
+
+    HandleAddListener(refDropDownSetup, refDropDownPaperClip, refShowEmojiPicker, refEmojiPicker) {
+
+        const handleClickOutside = (e) => {
+            if (refDropDownSetup.current && !refDropDownSetup.current.contains(e.target)) {
+                this.#view.setOpenDropDownSetup(false);
+            }
+            if (refDropDownPaperClip.current && !refDropDownPaperClip.current.contains(e.target)) {
+                this.#view.setOpenDropdownPaperClip(false);
+            }
+            if (refShowEmojiPicker.current && !refShowEmojiPicker.current.contains(e.target)) {
+                this.#view.setOpenEmojiPicker(false);
+            }
+        }
+
+        const handleEmojiClick = (e) => {
+            this.#view.setMessage((prev) => prev + e.detail.unicode);
+            console.log(e.detail.unicode);
+        }
+
+        if (refEmojiPicker.current) {
+            refEmojiPicker.current.addEventListener("emoji-click", handleEmojiClick);
+        }
+
+        window.addEventListener('mousedown', handleClickOutside);
+        window.addEventListener('scroll', handleClickOutside, true);
+        return () => {
+            refEmojiPicker.current.removeEventListener('emoji-click', handleEmojiClick);
+            window.removeEventListener('mousedown', handleClickOutside);
+            window.removeEventListener('scroll', handleClickOutside);
+        }
     }
 }
