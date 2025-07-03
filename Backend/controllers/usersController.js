@@ -80,7 +80,16 @@ export default class UsersController {
         const { id } = req.params;
         try {
             const findUser = await usersService.getUser(id);
-            res.status(200).json({ status: "success", data: findUser });
+            const user = findUser.profiles.map(value => {
+                const url_cover = `${req.protocol}://${req.get('host')}/${value.cover_picture}`;
+                const url_profile = `${req.protocol}://${req.get('host')}/${value.profile_picture}`;
+                return {
+                    url_cover,
+                    url_profile,
+                    ...value.dataValues
+                }
+            })
+            res.status(200).json({ status: "success", data: user });
         } catch (err) {
             console.error(err);
             return res.status(500).json({ status: "fail", message: err.message })

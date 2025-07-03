@@ -69,4 +69,26 @@ export default class data {
         });
         return ListMessage.data;
     }
+    async getProducts() {
+        const products = await this.instance.get('/products');
+        return products.data;
+    }
+    async getCategories() {
+        const categories = await this.instance.get('/categories');
+        return categories.data;
+    }
+    async getProfile() {
+        const profile = await this.instance.get('/profile', {
+            withCredentials: true
+        });
+        return profile.data;
+    }
+    async updateCoverProfile(data, id) {
+        const profile = await this.instance.put(`/profile/cover/${id}`, data, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return profile.data;
+    }
 }

@@ -8,4 +8,7 @@ export default class CategoiresService {
     static async updateCategori() {
         
     }
+    static async createCategories(data) {
+        return await model.categories.create(data);
+    }
 }

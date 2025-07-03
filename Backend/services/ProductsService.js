@@ -3,13 +3,17 @@ import model from "../models/index.js";
 export default class ProductsService {
 
     static async getProducts() {
-        return await model.products();
+        return await model.products.findAll({
+            include: {
+                model: model.images_product
+            }
+        });
     }
     static async updateProduct(id, data) {
         const product = await model.products.update(data, {
             where: {
                 product_id: id
-            }
+            },
         });
         return product;
     }

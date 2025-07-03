@@ -39,6 +39,9 @@ export default class usersService {
             attributes: ["user_id", "username"],
             where: {
                 user_id: id
+            },
+            include: {
+                model: model.profiles
             }
         });
         return user;

@@ -25,6 +25,8 @@ import LocationPayment from './View/Payment/LocationPayment';
 import MethodPayment from './View/Payment/MethodPayment';
 import FormChatting from './View/Chatting/FormChatting';
 import DetailReview from './View/Products/DetailReviewProduct';
+import Dashboard from './View/Dashboard/Dashboard';
+import UpdateCoverProfile from './View/Profile/updateCoverProfile';
 
 function App() {
 
@@ -51,12 +53,14 @@ function App() {
           </Route>
           <Route path='carts' element={<Carts />} />
         </Route>
+        <Route path='/profile/edit-cover' element={<UpdateCoverProfile />} />
         <Route path='/message' element={<Chatting />} >
           <Route path=':name' element={<FormChatting />} />
         </Route>
         <Route path='/add-product' element={<AddProduct />} />
         <Route path='/edit-profile' element={<EditProfile />} />
         <Route path='/detail-review/product/id' element={<DetailReview />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </>
