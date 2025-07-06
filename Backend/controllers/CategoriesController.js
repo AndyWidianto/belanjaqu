@@ -23,13 +23,13 @@ export default class categoiresController {
         }
     }
     static async createCategories(req, res) {
-        const { name, slug, description } = req.body;
+        const { name, description } = req.body;
         const picture = req.file.filename;
         if (!name) {
             return res.status(404).json("Name Categorie Not Found");
         }
         try {
-            await CategoiresService.createCategories({name, slug, description, picture})
+            await CategoiresService.createCategories({name, slug: name, description, picture})
             res.status(201).json({
                 status: "success",
                 message: "Categorie Berhasil ditambahkan"

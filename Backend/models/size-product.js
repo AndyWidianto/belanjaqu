@@ -16,7 +16,7 @@ const sizeProduct = connect.define("size_product", {
         }
     },
     size: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.STRING,
         allowNull: true
     }
 }, {

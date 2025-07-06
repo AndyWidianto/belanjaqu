@@ -25,6 +25,29 @@ export default class ProductsService {
         return await model.products.findOne({
             where: {
                 product_id: id
+            },
+            include: {
+                model: model.images_product
+            }
+        })
+    }
+    static async getProductsFromId(id) {
+        return await model.products.findAll({
+            where: {
+                user_id: id
+            },
+            include: {
+                model: model.images_product
+            }
+        })
+    }
+    static async getProductsFromIdCategori(id) {
+        return await model.products.findAll({
+            where: {
+                categori_id: id
+            },
+            include: {
+                model: model.images_product
             }
         })
     }

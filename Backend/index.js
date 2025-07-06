@@ -30,7 +30,7 @@ handleSocet(io);
 app.use(routes);
 
 // connect database
-connect.sync({ })
+connect.sync()
     .then(() => console.log("database berhasil berjalan"))
     .catch((err) => console.log("gagal connect" + err));
 

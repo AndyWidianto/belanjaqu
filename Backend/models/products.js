@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import connect from "../config/database.js";
 import categories from "./categories.js";
+import users from "./users.js";
 
 const products = connect.define("products", {
     product_id: {
@@ -13,6 +14,13 @@ const products = connect.define("products", {
         references: {
             model: categories,
             key: "categori_id"
+        }
+    },
+    user_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: users,
+            key: "user_id"
         }
     },
     name: {
@@ -36,7 +44,7 @@ const products = connect.define("products", {
         allowNull: false,
     },
     weight: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.STRING,
         allowNull: true,
     }
 }, {

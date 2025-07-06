@@ -7,6 +7,7 @@ import MessagesController from '../controllers/MessagesController.js';
 import { verifyToken } from '../midelwares/token.js';
 import ProfileController from '../controllers/ProfilesController.js';
 import ImagesProductController from '../controllers/imagesProductController.js';
+import SizesController from '../controllers/SizesController.js';
 
 const routes = express.Router();
 const storage = multer.diskStorage({
@@ -56,9 +57,14 @@ routes.get('/products', ProductsController.getProducts);
 routes.put('/product/:id', ProductsController.updateProduct);
 routes.post('/product', ProductsController.createProduct);
 routes.get('/product/:id', ProductsController.getProduct);
+routes.get('/products/:id', ProductsController.getProductsFromId);
+routes.get('/products/categori/:id', ProductsController.getProductsFromIdCategori);
+
+//size
+routes.post('/sizes/:id', SizesController.createSizes);
 
 //product image
-routes.post('/product-image/:id', upload.array("image"), ImagesProductController.createImages);
+routes.post('/product-image/:id', upload.array("images"), ImagesProductController.createImages);
 
 //categoires
 routes.get('/categories', categoiresController.getCategories);

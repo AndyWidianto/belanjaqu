@@ -7,6 +7,7 @@ import profiles from "./profiles.js";
 import carts from "./carts.js";
 import orderItems from "./order-items.js";
 import messages from "./messages.js";
+import sizeProduct from "./size-product.js";
 
 const model = {
     users: users,
@@ -17,7 +18,8 @@ const model = {
     profiles: profiles,
     carts: carts,
     order_items: orderItems,
-    messages: messages
+    messages: messages,
+    sizes: sizeProduct
 }
 
 export default model;
