@@ -1,9 +1,9 @@
 import { DataTypes } from "sequelize";
-import connect from "../config/database";
-import users from "./users";
+import connect from "../config/database.js";
+import users from "./users.js";
 
 const address = connect.define("shipping_address", {
-    adddres_id: {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -12,7 +12,7 @@ const address = connect.define("shipping_address", {
         type: DataTypes.INTEGER,
         references: {
             model: users,
-            key: "user_id",
+            key: "id",
         }
     },
     receiver: {
@@ -55,7 +55,5 @@ const address = connect.define("shipping_address", {
     tableName: "shipping_address",
     timestamps: true
 });
-
-users.hasMany(address, { foreignKey: "user_id" });
 
 export default address;

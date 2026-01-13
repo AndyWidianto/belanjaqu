@@ -12,14 +12,14 @@ const messages = connect.define("messages", {
         type: DataTypes.INTEGER,
         references: {
             model: users,
-            key: "user_id"
+            key: "id"
         }
     },
     receiver_id: {
         type: DataTypes.INTEGER,
         references: {
             model: users,
-            key: "user_id"
+            key: "id"
         }
     },
     content: {
@@ -33,10 +33,6 @@ const messages = connect.define("messages", {
     tableName: "messages",
     timestamps: true
 });
-
-
-users.hasMany(messages, { foreignKey: "sender_id" });
-users.hasMany(messages, { foreignKey: "receiver_id" });
 
 
 export default messages;

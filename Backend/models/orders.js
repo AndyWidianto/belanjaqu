@@ -3,7 +3,7 @@ import connect from "../config/database.js";
 import users from "./users.js";
 
 const orders = connect.define("orders", {
-    order_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -12,7 +12,7 @@ const orders = connect.define("orders", {
         type: DataTypes.INTEGER,
         references: {
             model: users,
-            key: "user_id",
+            key: "id",
         }
     },
     total_price: {
@@ -20,7 +20,7 @@ const orders = connect.define("orders", {
         allowNull: false,
     },
     status: {
-        type: DataTypes.ENUM("Pending", "Processing", "Paid", "Shipped", "Delivered", "Completed", "Cancelled", "Refunded", "Returned"),
+        type: DataTypes.ENUM("pending", "processing", "paid", "shipped", "delivered", "completed", "cancelled", "refunded", "returned"),
         allowNull: false
     },
     payment_method: {
@@ -35,8 +35,5 @@ const orders = connect.define("orders", {
     tableName: "orders",
     timestamps: true
 });
-
-
-users.hasMany(orders, { foreignKey: "user_id" });
 
 export default orders;

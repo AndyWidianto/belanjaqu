@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
-import connect from "../config/database";
+import connect from "../config/database.js";
 
-const payment_types = connect.define("payment_types", {
-    type_id: {
+const paymentTypes = connect.define("payment_types", {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
@@ -17,4 +17,4 @@ const payment_types = connect.define("payment_types", {
 });
 
 
-export default payment_types;
+export default paymentTypes;

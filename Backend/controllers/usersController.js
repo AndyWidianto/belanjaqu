@@ -1,85 +1,55 @@
-import { createToken } from "../midelwares/token.js";
 import usersService from "../services/UsersService.js";
 
+
+const userService = new usersService();
 export default class UsersController {
 
-    static async getUsers(req, res) {
-        const { username } = req.query;
+    async getUsers(req, res, next) {
+        const user = req.user;
         try {
-            if (username) {
-                const user = await usersService.getUserFromUsername(username);
-                return res.status(200).json({
-                    status: "success",
-                    data: user
-                })
-            }
-            const resUsers = await usersService.getUsers();
+            const users = await userService.getUsers(user);
             res.status(200).json({
                 status: "success",
-                data: resUsers?.map(value => {
-                    return {
-                        id: value.user_id,
-                        email: value.email,
-                        username: value.username
-                    }
-                })
+                data: users
             });
         } catch (err) {
-            return res.status(500).json({ message: "Internal Server Error" });
+            console.error(err);
+            next(err);
         }
     }
-
-    static async Login(req, res) {
-        const { username, password } = req.body;
-
+    async createUser(req, res, next) {
+        const body = req.body;
+        const user = req.user;
         try {
-            const user = await usersService.login(username);
-            if (!user) {
-                return res.status(403).json({ status: "fail", message: "Email atau Username tidak ditemukan!" });
-            }
-            if (user.password !== password) {
-                return res.status(403).json({ status: "fail", message: "Password tidak Valid!"})
-            }
-            const token = createToken(user.user_id, user.username, user.email);
-            res.cookie("token", token, {
-                httpOnly: true,
-                secure: false,
-                maxAge: 1000 * 60 * 60 * 24
-            });
-            res.status(200).json({
-                status: "success",
-                message: "Berhasil Login",
+            const user = await userService.createUser(user, body);
+            res.json({
+                message: "successfully",
+                data: user
             });
         } catch (err) {
-            return res.status(404).json({ message: "gagal login" });
+            console.error(err);
+            next(err);
         }
     }
-
-    static async Register(req, res) {
-        const { username, email, password } = req.body;
-        try {
-            const user = await usersService.Register(email, username, password);
-            if (!user) {
-                return res.status(404).json({ message: "User Not Found" });
-            }
-            const token = createToken(user.user_id, user.username, user.email);
-            res.cookie("token", token, {
-                httOnly: true,
-                secure: false,
-                maxAge: 40000
-            })
-            res.status(201).json({
-                status: "success",
-                message: "Berhasil membuat user"
-            })
-        } catch (err) {
-            return res.status(404).json({ message: "gagal", error: err });
-        }
-    }
-    static async getUser(req, res) {
+    async updateUser(req, res, next) {
+        const body = req.body;
+        const user = req.user;
         const { id } = req.params;
         try {
-            const findUser = await usersService.getUser(id);
+            const user = await userService.updateUser(user, id, body);
+            res.json({
+                message: "successfully",
+                data: user
+            });
+        } catch (err) {
+            console.error(err);
+            next(err);
+        }
+    }
+    async getUser(req, res) {
+        const { id } = req.params;
+        try {
+            const findUser = await userService.getUser(id);
             const user = findUser.profiles.map(value => {
                 const url_cover = `${req.protocol}://${req.get('host')}/${value.cover_picture}`;
                 const url_profile = `${req.protocol}://${req.get('host')}/${value.profile_picture}`;
@@ -94,15 +64,5 @@ export default class UsersController {
             console.error(err);
             return res.status(500).json({ status: "fail", message: err.message })
         }
-    }
-    static parseCookie(req, res) {
-        const user = req.user;
-        return res.status(200).json({
-            status: "success",
-            data: user
-        });
-    }
-    static Logout(req, res) {
-        res.clearCookie("token");
     }
 }

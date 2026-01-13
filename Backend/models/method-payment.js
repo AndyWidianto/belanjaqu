@@ -3,7 +3,7 @@ import connect from "../config/database";
 import products from "./products";
 
 const payments = connect.define("methods_payment", {
-    payment_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true, 
         autoIncrement: true
@@ -12,7 +12,7 @@ const payments = connect.define("methods_payment", {
         type: DataTypes.INTEGER,
         references: {
             model: products,
-            key: "product_id"
+            key: "id"
         },
     },
     name_payment: {
@@ -27,9 +27,6 @@ const payments = connect.define("methods_payment", {
     tableName: "methods_payments",
     timestamps: true
 });
-
-
-products.hasMany(payments, { foreignKey: "product_id" });
 
 export default payments;
 

@@ -1,140 +1,134 @@
 import ProductsService from "../services/ProductsService.js";
 
+const productService = new ProductsService();
 export default class ProductsController {
 
-    static async getProducts(req, res) {
+    createSlug(text) {
+        return text.toString().toLowerCase().trim().replace(/[\s\W-]+/g, "-");
+    }
+    async getProducts(req, res, next) {
         try {
-            const products = await ProductsService.getProducts();
-            const parseProducts = products.map(product => {
-                product.dataValues.images_products = product.images_products.map(image => {
-                    image.dataValues.image = `${req.protocol}://${req.get('host')}/${image.image}`;
-                    return {
-                        ...image.dataValues
-                    }
-                });
-                return {
-                    ...product.dataValues
-                }
-            })
-            res.status(200).json({
+            const products = await productService.getProducts();
+            return res.status(200).json({
                 status: "success",
-                data: parseProducts
+                data: products
             });
         } catch (err) {
             console.error(err);
-            return res.status(500)
+            next(err);
         }
     }
-    static async updateProduct(req, res) {
-        const { id } = req.params;
-        const data = req.body;
-        if (!data) {
-            return res.status(404).json({
-                status: "fail",
-                message: "data Not Found"
-            });
-        }
+    async updateProduct(req, res, next) {
+        const id = req.params.id;
+        const user = req.user;
+        const { category_id, name, description, status, product_specifications } = req.body;
+        const slug = name.toString().toLowerCase().trim().replace(/[\s\W-]+/g, "-");
         try {
-            await ProductsService.updateProduct(id, data);
-            res.status(201).json({
-                status: "success",
-                message: "Berhasil update product"
-            });
-        } catch (err) {
-            return res.status(500).json({
-                error: "Internal Server Error"
-            });
-        }
-    }
-    static async createProduct(req, res) {
-        const { categori_id, name, description, price, stock, weight } = req.body;
-        if (!categori_id) {
-            return res.status(404).json({
-                status: "fail",
-                message: "Categori Not Found"
-            });
-        }
-        try {
-            const create = await ProductsService.createProduct({ categori_id, name, description, price, stock, weight });
-            res.status(201).json({
-                status: "success",
-                message: "Berhasil menambahkan product",
-                data: create
-            });
-        } catch (err) {
-            console.error(err);
-            return res.status(500).json({
-                error: "Internal Server Error"
-            })
-        }
-    }
-    static async getProduct(req, res) {
-        const { id } = req.params;
-        try {
-            const product = await ProductsService.getProduct(id);
-            product.images_products = product.dataValues.images_products.map(image => {
-                image.dataValues.image = `${req.protocol}://${req.get('host')}/${image.dataValues.image}`;
-                return {
-                    ...image.dataValues
-                }
-            });
-            res.status(200).json({
-                status: "success",
+            const product = await productService.updateProduct(user, id, { category_id, name, description, status, slug, product_specifications });
+            res.json({
+                message: "successfully",
                 data: product
             });
         } catch (err) {
             console.error(err);
-            return res.status(500).json({
-                error: "Internal Server Error"
-            })
+            next(err);
         }
     }
-    static async getProductsFromId(req, res) {
-        const { id } = req.params;
+    async createProduct(req, res, next) {
+        const user = req.user;
+        const { category_id, name, description, status, product_specifications } = req.body;
+        const slug = name.toString().toLowerCase().trim().replace(/[\s\W-]+/g, "-");
         try {
-            const products = await ProductsService.getProductsFromId(id);
-            const parseProducts = products.map(product => {
-                product.dataValues.images_products = product.dataValues.images_products.map(image => {
-                    image.dataValues.image = `${req.protocol}://${req.get('host')}/${image.dataValues.image}`;
-                    return {
-                        ...image.dataValues
-                    }
-                });
-                return {
-                    ...product.dataValues
-                }
-            });
-            res.status(200).json({
-                status: "success",
-                data: parseProducts
+            const product = await productService.createProduct(user, { category_id, name, description, status, slug, product_specifications });
+            res.status(201).json({
+                message: "Successfully create product",
+                data: product
             });
         } catch (err) {
             console.error(err);
-            res.status(500);
+            next(err);
         }
     }
-    static async getProductsFromIdCategori(req, res) {
+    async getProduct(req, res, next) {
         const { id } = req.params;
         try {
-            const products = await ProductsService.getProductsFromIdCategori(id);
-            const parseProducts = products.map(product => {
-                product.dataValues.images_products = product.dataValues.images_products.map(image => {
-                    image.dataValues.image = `${req.protocol}://${req.get('host')}/${image.dataValues.image}`;
-                    return {
-                        ...image.dataValues
-                    }
-                });
-                return {
-                    ...product.dataValues
-                }
-            });
+            const product = await productService.getProduct(id, req.protocol, req.get("host"));
             res.status(200).json({
-                status: "success",
-                data: parseProducts
-            })
+                message: "Successfully",
+                data: product
+            });
         } catch (err) {
             console.error(err);
-            res.status(500);
+            next(err);
+        }
+    }
+    async deleteProduct(req, res, next) {
+        const { id } = req.params;
+        const user = req.user;
+        try {
+            await productService.deleteProduct(user, id);
+            res.status(200).json({
+                status: "success",
+            });
+        } catch (err) {
+            console.error(err);
+            next(err);
+        }
+    }
+    async createProductItem(req, res, next) {
+        const body = req.body;
+        const user = req.user;
+        const image = req.file ? req.file.filename : null;
+        try {
+            const productItem = await productService.createProductItem(user, { ...body, image });
+            res.json({
+                message: "Successfully",
+                data: productItem
+            });
+        } catch (err) {
+            console.error(err);
+            next(err);
+        }
+    }
+    async updateProductItem(req, res, next) {
+        const { id } = req.params;
+        const user = req.user;
+        const image = req.file ? req.file.filename : null;
+        const body = req.body;
+        try {
+            const productItem = await productService.updateProductItem(user, id, { ...body, image });
+            res.json({
+                message: "Successfully",
+                data: productItem
+            });
+        } catch (err) {
+            console.error(err);
+            next(err);
+        }
+    }
+    async deleteProductItem(req, res, next) {
+        const { id } = req.params;
+        const user = req.user;
+        try {
+            await productService.deleteProductItem(user, id);
+            res.json({
+                message: "Successfully delete item product"
+            });
+        } catch (err) {
+            console.error(err);
+            next(err);
+        }
+    }
+    async getProductItems(req, res, next) {
+        try {
+            const productItems = await productService.getProductItems();
+            res.json({
+                message: "Successfully",
+                data: productItems
+            });
+        } catch (err) {
+            console.error(err);
+            next(err);
         }
     }
 }

@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import connect from "../config/database";
 
 const couriers = connect.define("couriers", {
-    courier_id: {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,

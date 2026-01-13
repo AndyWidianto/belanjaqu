@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import connect from "../config/database.js";
 
 const categories = connect.define("categories", {
-    categori_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -17,10 +17,6 @@ const categories = connect.define("categories", {
     },
     description: {
         type: DataTypes.TEXT,
-        allowNull: true,
-    },
-    picture: {
-        type: DataTypes.STRING,
         allowNull: true,
     }
 }, {

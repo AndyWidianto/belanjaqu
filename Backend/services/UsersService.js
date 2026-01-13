@@ -1,58 +1,56 @@
 import { Op } from "sequelize";
+import AppError from "../errors/customError.js";
 import model from "../models/index.js";
+
 
 export default class usersService {
 
-    static async getUsers() {
+    async getUsers(user) {
+        if (user.role !== "super_admin") {
+            throw new AppError("Validation failed", 403, { message: "You are not allowed get users"});
+        }
         const users =  await model.users.findAll();
         return users;
     }
-
-    static async login(username) {
-        const user = await model.users.findOne({
-            where: {
-                [Op.or]: [
-                    { username: username },
-                    { email: username },   
-                ]
-            }
-        });
-
-        return user;
+    async createUser(user, { email, password, username }) {
+        if (user.role !== "super_admin") {
+            throw new AppError("Validation failed", 403, { message: "You are not allowed get users"});
+        }
+        const findUser = await model.users.findOne({ where: {
+            [Op.or]: [
+                { username: username },
+                { email: email }
+            ]
+        }});
+        if (findUser) {
+            throw new AppError("User is already", 419, { message: "User is Already" });
+        }
+        const newUser = await model.users.create({ email, username, password });
+        return newUser.toJSON();
+    }
+    async updateUser(user, id, { email, password, username }) {
+        if (user.role !== "super_admin") {
+            throw new AppError("Validation failed", 403, { message: "You are not allowed get users"});
+        }
+        const findUser = await model.users.findOne({ where: {
+            [Op.or]: [
+                { username: username },
+                { email: email }
+            ]
+        }});
+        if (!findUser) {
+            throw new AppError("User is Not found", 419, { message: "User is Not found" });
+        }
+        await findUser.update({ email, username, password });
+        return findUser.toJSON();
     }
 
-    static async Register(email, username, password) {
-        const user = await model.users.create({
-            email: email,
-            username: username,
-            password: password
-        });
-        await model.profiles.create({
-            user_id: user.user_id,
-            full_name: username
-        });
-        return user;
-    }
-
-    static async getUser(id) {
+    async getUser(id) {
         const user = await model.users.findOne({
-            attributes: ["user_id", "username"],
+            attributes: ["user_id", "username", "email"],
             where: {
                 user_id: id
             },
-            include: {
-                model: model.profiles
-            }
-        });
-        return user;
-    }
-
-    static async getUserFromUsername(username) {
-        const user = await model.users.findOne({
-            where: {
-                username: username
-            },
-            attributes: ["user_id", "username", "email", "createdAt", "updatedAt"],
             include: {
                 model: model.profiles
             }

@@ -1,9 +1,9 @@
 import { DataTypes } from "sequelize";
-import connect from "../config/database";
-import payment_types from "./payment-types";
+import connect from "../config/database.js";
+import payment_types from "./payment-types.js";
 
 const payments = connect.define("payments", {
-    payment_id: {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
@@ -12,7 +12,7 @@ const payments = connect.define("payments", {
         type: DataTypes.INTEGER,
         references: {
             model: payment_types,
-            key: "type_id"
+            key: "id"
         }
     },
     name: {
@@ -39,7 +39,5 @@ const payments = connect.define("payments", {
     tableName: "payments",
     timestamps: true
 });
-
-payment_types.hasMany(payments, { foreignKey: "type_id" });
 
 export default payments;

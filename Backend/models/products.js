@@ -1,26 +1,18 @@
 import { DataTypes } from "sequelize";
 import connect from "../config/database.js";
 import categories from "./categories.js";
-import users from "./users.js";
 
 const products = connect.define("products", {
-    product_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    categori_id: {
+    category_id: {
         type: DataTypes.INTEGER,
         references: {
             model: categories,
-            key: "categori_id"
-        }
-    },
-    user_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: users,
-            key: "user_id"
+            key: "id"
         }
     },
     name: {
@@ -29,30 +21,17 @@ const products = connect.define("products", {
     },
     slug: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false
     },
     description: {
-        type: DataTypes.TEXT,
-        allowNull: true,
+        type: DataTypes.TEXT
     },
-    price: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    stock: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    weight: {
-        type: DataTypes.STRING,
-        allowNull: true,
+    status: {
+        type: DataTypes.ENUM("active", "draft")
     }
 }, {
     tableName: "products",
     timestamps: true
 });
-
-
-categories.hasMany(products, { foreignKey: "categori_id" });
 
 export default products;
